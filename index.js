@@ -13,7 +13,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-const db = 'mongodb+srv://aditya:adi@12345@cluster0.eil7d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const db = 'mongodb+srv://aditya:adi@123@cluster0.izpgp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose
   .connect(
@@ -26,6 +26,10 @@ mongoose
 const Schema = mongoose.Schema;
 
 const Users = new Schema({
+    _id: {
+        type: String,
+        required: true
+    },
     fname: {
         type: String,
         required: true
@@ -61,25 +65,30 @@ const UsersProfile = new Schema({
     }
 });
 const userProfile = mongoose.model('userprofile', UsersProfile);
-let ne =
+let original_id1 = ObjectId();
+let original_id2 = ObjectId();
+let original_id3 = ObjectId();
+let original_id4 = ObjectId();
+let original_id5 = ObjectId();
 user.insertMany([
-    {fname: 'aditya', email:'adi@test.com', lname:'kumar', password:md5('12345')},
-    {fname: 'john', email:'john@test.com', lname:'doe', password:md5('12345')},
-    {fname: 'abcd', email:'abcd@test.com', lname:'kumar', password:md5('12345')},
-    {fname: 'efgh', email:'adi@test.com', lname:'singh', password:md5('12345')},
-    {fname: 'ijkl', email:'adi@test.com', lname:'mishra', password:md5('12345')},
+    {_id: original_id1,fname: 'aditya', email:'adi@test.com', lname:'kumar', password:md5('12345')},
+    {_id: original_id2,fname: 'john', email:'john@test.com', lname:'doe', password:md5('12345')},
+    {_id: original_id3,fname: 'abcd', email:'abcd@test.com', lname:'kumar', password:md5('12345')},
+    {_id: original_id4,fname: 'efgh', email:'adi@test.com', lname:'singh', password:md5('12345')},
+    {_id: original_id5,fname: 'ijkl', email:'adi@test.com', lname:'mishra', password:md5('12345')},
 ]).then(function(){
     console.log("Data inserted");
 }).catch(function(error){
     console.log(error);
 });
 
+
 userProfile.insertMany([
-    {user_id: 1, dob:1-01-1990, Mobile_no: 123456},
-    {user_id: 2, dob:2-02-1995, Mobile_no: 123457},
-    {user_id: 3, dob:3-03-1998, Mobile_no: 123458},
-    {user_id: 4, dob:4-04-2000, Mobile_no: 123459},
-    {user_id: 5, dob:5-05-2001, Mobile_no: 123450}
+    {user_id: original_id1, dob:new Date('1990-01-01'), Mobile_no: 123456},
+    {user_id: original_id2, dob:new Date('1995-01-01'), Mobile_no: 123457},
+    {user_id: original_id3, dob:new Date('1997-01-01'), Mobile_no: 123458},
+    {user_id: original_id4, dob:new Date('1998-01-01'), Mobile_no: 123459},
+    {user_id: original_id5, dob:new Date('1996-01-01'), Mobile_no: 123450}
 ]).then(function(){
     console.log("Data inserted")  // Success
 }).catch(function(error){
