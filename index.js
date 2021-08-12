@@ -65,31 +65,33 @@ const UsersProfile = new Schema({
     }
 });
 const userProfile = mongoose.model('userprofile', UsersProfile);
-let original_id1 = ObjectId();
-let original_id2 = ObjectId();
-let original_id3 = ObjectId();
-let original_id4 = ObjectId();
-let original_id5 = ObjectId();
-user.insertMany([
-    {_id: original_id1,fname: 'aditya', email:'adi@test.com', lname:'kumar', password:md5('12345')},
-    {_id: original_id2,fname: 'john', email:'john@test.com', lname:'doe', password:md5('12345')},
-    {_id: original_id3,fname: 'abcd', email:'abcd@test.com', lname:'kumar', password:md5('12345')},
-    {_id: original_id4,fname: 'efgh', email:'adi@test.com', lname:'singh', password:md5('12345')},
-    {_id: original_id5,fname: 'ijkl', email:'adi@test.com', lname:'mishra', password:md5('12345')},
-]).then(function(){
+// let original_id1 = ObjectId();
+// let original_id2 = ObjectId();
+// let original_id3 = ObjectId();
+// let original_id4 = ObjectId();
+// let original_id5 = ObjectId();
+
+let userData = [
+    {_id: ObjectId(),fname: 'aditya', email:'adi@test.com', lname:'kumar', password:md5('12345')},
+    {_id: ObjectId(),fname: 'john', email:'john@test.com', lname:'doe', password:md5('12345')},
+    {_id: ObjectId(),fname: 'abcd', email:'abcd@test.com', lname:'kumar', password:md5('12345')},
+    {_id: ObjectId(),fname: 'efgh', email:'adi@test.com', lname:'singh', password:md5('12345')},
+    {_id: ObjectId(),fname: 'ijkl', email:'adi@test.com', lname:'mishra', password:md5('12345')},
+];
+user.insertMany(userData).then(function(){
     console.log("Data inserted");
 }).catch(function(error){
     console.log(error);
 });
 
-
-userProfile.insertMany([
-    {user_id: original_id1, dob:new Date('1990-01-01'), Mobile_no: 123456},
-    {user_id: original_id2, dob:new Date('1995-01-01'), Mobile_no: 123457},
-    {user_id: original_id3, dob:new Date('1997-01-01'), Mobile_no: 123458},
-    {user_id: original_id4, dob:new Date('1998-01-01'), Mobile_no: 123459},
-    {user_id: original_id5, dob:new Date('1996-01-01'), Mobile_no: 123450}
-]).then(function(){
+let userProfileData = [
+    {user_id: userData[0]._id, dob:new Date('1990-01-01'), Mobile_no: 123456},
+    {user_id: userData[1]._id, dob:new Date('1995-01-01'), Mobile_no: 123457},
+    {user_id: userData[2]._id, dob:new Date('1997-01-01'), Mobile_no: 123458},
+    {user_id: userData[3]._id, dob:new Date('1998-01-01'), Mobile_no: 123459},
+    {user_id: userData[4]._id, dob:new Date('1996-01-01'), Mobile_no: 123450}
+];
+userProfile.insertMany(userProfileData).then(function(){
     console.log("Data inserted")  // Success
 }).catch(function(error){
     console.log(error)      // Failure
